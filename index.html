@@ -31,7 +31,11 @@
             </form>
 
             <!-- Pie Chart -->
-            <canvas id="vampireChart"></canvas>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <canvas id="vampireChart" style="max-width: 25%"></canvas>
+                </div>
+            </div>
 
             <!-- Result -->
             <div
@@ -72,6 +76,7 @@
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+R8K4C2Oz9FwIbfj6azQtjrLSq0XrCbGJF"
             crossorigin="anonymous"
         ></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script src="libs/tensorflow.js"></script>
         <script src="scripts/model.js"></script>
