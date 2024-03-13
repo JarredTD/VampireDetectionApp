@@ -2,6 +2,10 @@ class VampireView {
     constructor() {
         this.classmateTableBody = document.getElementById("classmateTableBody");
         this.classmates = [];
+        this.chartCanvas = document.getElementById("vampireChart");
+        this.chartContext = this.chartCanvas.getContext("2d");
+        this.chartLabels = ["Vampires", "Non-Vampires"];
+        this.chartColors = ["#ff6384", "#36a2eb"];
     }
 
     displayClassificationResult(name, isVampire) {
@@ -9,6 +13,7 @@ class VampireView {
         document.getElementById("classificationResult").innerText = resultText;
 
         this.addClassmateToList({ name, isVampire });
+        this.updatePieChart();
     }
 
     addClassmateToList(classmate) {
@@ -34,6 +39,39 @@ class VampireView {
             cellIndex.innerHTML = index + 1;
             cellName.innerHTML = classmate.name;
             cellIsVampire.innerHTML = classmate.isVampire ? "Yes" : "No";
+        });
+    }
+
+    updatePieChart() {
+        const vampireCount = this.classmates.filter(
+            (classmate) => classmate.isVampire
+        ).length;
+        const nonVampireCount = this.classmates.length - vampireCount;
+
+        const chartData = {
+            labels: this.chartLabels,
+            datasets: [
+                {
+                    data: [vampireCount, nonVampireCount],
+                    backgroundColor: this.chartColors,
+                },
+            ],
+        };
+
+        if (this.chartInstance) {
+            this.chartInstance.destroy();
+        }
+
+        this.chartInstance = new Chart(this.chartContext, {
+            type: "doughnut",
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: true,
+                },
+            },
         });
     }
 }
