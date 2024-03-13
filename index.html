@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vampire App</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="styles/main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center mt-5">Vampire App</h1>
+
+            <div class="form-group">
+                <label for="methodSelect">Choose Classification Method:</label>
+                <select class="form-control" id="methodSelect">
+                    <option value="threshold">Threshold-based</option>
+                    <option value="random">Random Guess</option>
+                    <option value="decisionTree">Decision Tree</option>
+                </select>
+            </div>
+
+            <!-- Threshold-based Method Form -->
+            <div id="thresholdForm">
+                <form id="classmateForm">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <!-- Name Input -->
+                            <label for="nameInput">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nameInput"
+                                placeholder="Enter name"
+                            />
+                        </div>
+                        <!-- Has Shadow Toggle -->
+                        <div class="custom-control custom-switch">
+                            <input
+                                type="checkbox"
+                                class="custom-control-input"
+                                id="shadowInput"
+                            />
+                            <label
+                                class="custom-control-label"
+                                for="shadowInput"
+                                >Has Shadow</label
+                            >
+                        </div>
+                        <!-- Pale Complexion Toggle -->
+                        <div class="custom-control custom-switch">
+                            <input
+                                type="checkbox"
+                                class="custom-control-input"
+                                id="complexionInput"
+                            />
+                            <label
+                                class="custom-control-label"
+                                for="complexionInput"
+                                >Pale Complexion</label
+                            >
+                        </div>
+                        <!-- Allergic to Garlic Toggle -->
+                        <div class="custom-control custom-switch">
+                            <input
+                                type="checkbox"
+                                class="custom-control-input"
+                                id="garlicInput"
+                            />
+                            <label
+                                class="custom-control-label"
+                                for="garlicInput"
+                                >Allergic to Garlic</label
+                            >
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            <!-- Random Guess Method Form (No input fields needed, example shown for consistency) -->
+            <div id="randomForm" style="display: none">
+                <form id="classmateForm">
+                    <div class="form-group">
+                        <!-- Name Input -->
+                        <label for="nameInput">Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nameInput"
+                            placeholder="Enter name"
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            <!-- Decision Tree Method Form -->
+            <div id="decisionTreeForm" style="display: none">
+                <!-- TODO Implement -->
+            </div>
+
+            <!-- Pie Chart -->
+            <canvas id="vampireChart"></canvas>
+
+            <!-- Classmate Info Table -->
+            <table class="table mt-5">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Attributes</th>
+                        <th scope="col">Vampire?</th>
+                    </tr>
+                </thead>
+                <tbody id="classmateTableBody">
+                    <!-- Classmate rows added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bootstrap JS, Popper.js, & jQuery CDN -->
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"
+            integrity="sha384-ZzWtVEYb2y4TsfFsyvTBr3zRlzpGVTckaAcYYL2w3L67gwtkGj3R29t+As1kCsa"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+R8K4C2Oz9FwIbfj6azQtjrLSq0XrCbGJF"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="libs/tensorflow.js"></script>
+        <script src="scripts/model.js"></script>
+        <script src="scripts/view.js"></script>
+        <script src="scripts/controller.js"></script>
+        <script>
+            const model = new VampireModel();
+            const view = new VampireView();
+            const controller = new VampireController(model, view);
+        </script>
+    </body>
+</html>
