@@ -3,7 +3,7 @@ class VampireModel {
 
     thresholdDecision(student) {
         let score = 0;
-        score += student.hasShadow ? 4 : 0;
+        score += student.hasShadow ? 0 : 4;
         score += student.paleComplexion ? 3 : 0;
         score += student.allergicToGarlic ? 3 : 0;
 
