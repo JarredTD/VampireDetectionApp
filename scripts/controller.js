@@ -65,7 +65,7 @@ class VampireController {
         return `
             <div class="form-group">
                 <label for="nameInput">Name</label>
-                <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="Enter name">
+                <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="Enter name" required>
             </div>
         `;
     }
@@ -98,7 +98,10 @@ class VampireController {
                 };
                 break;
             case "random":
-                data.name = formData.get("nameInput");
+                data = {
+                    name: formData.get("nameInput"),
+                    classificationMethod: this.currentMethod,
+                };
                 break;
             case "decisionTree":
                 break;
@@ -130,8 +133,12 @@ class VampireController {
                     allergicToGarlic,
                 });
                 break;
+            case "random":
+                isVampire = this.model.randomDecision();
+                break;
             // TODO Handle random choice && decision tree
             default:
+                name = "John Doe";
                 isVampire = false;
         }
 
