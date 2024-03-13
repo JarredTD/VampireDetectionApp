@@ -23,92 +23,23 @@
                 </select>
             </div>
 
-            <!-- Threshold-based Method Form -->
-            <div id="thresholdForm">
-                <form id="classmateForm">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <!-- Name Input -->
-                            <label for="nameInput">Name</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="nameInput"
-                                placeholder="Enter name"
-                            />
-                        </div>
-                        <!-- Has Shadow Toggle -->
-                        <div class="custom-control custom-switch">
-                            <input
-                                type="checkbox"
-                                class="custom-control-input"
-                                id="shadowInput"
-                            />
-                            <label
-                                class="custom-control-label"
-                                for="shadowInput"
-                                >Has Shadow</label
-                            >
-                        </div>
-                        <!-- Pale Complexion Toggle -->
-                        <div class="custom-control custom-switch">
-                            <input
-                                type="checkbox"
-                                class="custom-control-input"
-                                id="complexionInput"
-                            />
-                            <label
-                                class="custom-control-label"
-                                for="complexionInput"
-                                >Pale Complexion</label
-                            >
-                        </div>
-                        <!-- Allergic to Garlic Toggle -->
-                        <div class="custom-control custom-switch">
-                            <input
-                                type="checkbox"
-                                class="custom-control-input"
-                                id="garlicInput"
-                            />
-                            <label
-                                class="custom-control-label"
-                                for="garlicInput"
-                                >Allergic to Garlic</label
-                            >
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
-            </div>
-
-            <!-- Random Guess Method Form (No input fields needed, example shown for consistency) -->
-            <div id="randomForm" style="display: none">
-                <form id="classmateForm">
-                    <div class="form-group">
-                        <!-- Name Input -->
-                        <label for="nameInput">Name</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="nameInput"
-                            placeholder="Enter name"
-                        />
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
-            </div>
-
-            <!-- Decision Tree Method Form -->
-            <div id="decisionTreeForm" style="display: none">
-                <!-- TODO Implement -->
-            </div>
+            <!-- Single dynamic form -->
+            <form id="classmateForm">
+                <!-- The content of this div will change based on the classification method -->
+                <div id="dynamicFields"></div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
 
             <!-- Pie Chart -->
             <canvas id="vampireChart"></canvas>
+
+            <!-- Result -->
+            <div
+                id="classificationResult"
+                class="alert"
+                role="alert"
+                style="display: none"
+            ></div>
 
             <!-- Classmate Info Table -->
             <table class="table mt-5">
